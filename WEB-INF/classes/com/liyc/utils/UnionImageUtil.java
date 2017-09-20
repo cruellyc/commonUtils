@@ -38,13 +38,14 @@ public class UnionImageUtil {
 	 * 上传图片
 	 * @param request
 	 * @param path
-	 * @param ratio
+	 * @param ratios 图片比例
+	 * @param isIntercept 是否截取
 	 * @return
-	 * @throws IOException 
-	 * @throws ImageProcessingException 
-	 * @throws IllegalStateException 
+	 * @throws IllegalStateException
+	 * @throws ImageProcessingException
+	 * @throws IOException
 	 */
-	public static String upload(HttpServletRequest request,String path,int[] ratios) throws IllegalStateException, ImageProcessingException, IOException{
+	public static String upload(HttpServletRequest request,String path,int[] ratios,int isIntercept) throws IllegalStateException, ImageProcessingException, IOException{
 		// 创建一个通用的多部分解析器
 		CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver(
 						request.getSession().getServletContext());
@@ -90,7 +91,13 @@ public class UnionImageUtil {
 						}else{
 							int imageWidth2=imageWidth/ratio;
 							int imageHeight2=imageHeight/ratio;
-							Thumbnails.of(bfImage).sourceRegion(Positions.CENTER, imageWidth, imageHeight)
+							int imageWidth3=imageWidth;
+							int imageHeight3=imageHeight;
+							if(isIntercept==0){
+								imageWidth3=imageWidth>imageHeight?imageHeight:imageWidth;
+								imageHeight3=imageWidth3;
+							}
+							Thumbnails.of(bfImage).sourceRegion(Positions.CENTER, imageWidth3, imageHeight3)
 							.size(imageWidth2, imageHeight2).outputFormat(picFormat)
 							.toFile(path + "/" + prefix + ratio+"." + picFormat);
 						}
