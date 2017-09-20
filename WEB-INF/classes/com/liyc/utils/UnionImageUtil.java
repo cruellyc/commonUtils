@@ -37,15 +37,17 @@ public class UnionImageUtil {
 	/**
 	 * 上传图片
 	 * @param request
-	 * @param path
+	 * @param path 图片路径
 	 * @param ratios 图片比例
-	 * @param isIntercept 是否截取
+	 * @param isIntercept 是否截取（0 截取 1 等比缩放）
+	 * @param isAddIcon 是否添加水印 （0 不添加 1添加）
+	 * @param iconPath 水印图片路径
 	 * @return
 	 * @throws IllegalStateException
 	 * @throws ImageProcessingException
 	 * @throws IOException
 	 */
-	public static String upload(HttpServletRequest request,String path,int[] ratios,int isIntercept) throws IllegalStateException, ImageProcessingException, IOException{
+	public static String upload(HttpServletRequest request,String path,int[] ratios,int isIntercept,int isAddIcon,String iconPath) throws IllegalStateException, ImageProcessingException, IOException{
 		// 创建一个通用的多部分解析器
 		CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver(
 						request.getSession().getServletContext());
@@ -83,11 +85,12 @@ public class UnionImageUtil {
 					logger.debug("bfImage aft");
 					int imageWidth = bfImage.getWidth();
 					int imageHeight = bfImage.getHeight();
-					
+					String targerPath=path + "/" + prefix + "." + picFormat;
 					for(int ratio:ratios){
 						if(ratio==1){
 							Thumbnails.of(bfImage).size(imageWidth, imageHeight).outputFormat(picFormat)
 							.toFile(path + "/" + prefix + "." + picFormat);
+							targerPath=path + "/" + prefix + "." + picFormat;
 						}else{
 							int imageWidth2=imageWidth/ratio;
 							int imageHeight2=imageHeight/ratio;
@@ -100,6 +103,10 @@ public class UnionImageUtil {
 							Thumbnails.of(bfImage).sourceRegion(Positions.CENTER, imageWidth3, imageHeight3)
 							.size(imageWidth2, imageHeight2).outputFormat(picFormat)
 							.toFile(path + "/" + prefix + ratio+"." + picFormat);
+							targerPath=path + "/" + prefix + ratio+"." + picFormat;
+						}
+						if(isAddIcon==1){
+							ImageMarkLogoByIcon.markImageByIcon(iconPath, targerPath, targerPath);
 						}
 					}
 					return path + "/" + prefix + "." + picFormat;
