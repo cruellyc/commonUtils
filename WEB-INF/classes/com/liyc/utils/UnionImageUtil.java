@@ -44,7 +44,7 @@ public class UnionImageUtil {
 	 * @throws ImageProcessingException 
 	 * @throws IllegalStateException 
 	 */
-	public static String upload(HttpServletRequest request,String path,int ratio) throws IllegalStateException, ImageProcessingException, IOException{
+	public static String upload(HttpServletRequest request,String path,int[] ratios) throws IllegalStateException, ImageProcessingException, IOException{
 		// 创建一个通用的多部分解析器
 		CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver(
 						request.getSession().getServletContext());
@@ -83,15 +83,17 @@ public class UnionImageUtil {
 					int imageWidth = bfImage.getWidth();
 					int imageHeight = bfImage.getHeight();
 					
-					if(ratio==1){
-						Thumbnails.of(bfImage).size(imageWidth, imageHeight).outputFormat(picFormat)
-						.toFile(path + "/" + prefix + "." + picFormat);
-					}else{
-						imageWidth=imageWidth/ratio;
-						imageHeight=imageHeight/ratio;
-						Thumbnails.of(bfImage).sourceRegion(Positions.CENTER, imageWidth, imageHeight)
-						.size(imageWidth, imageHeight).outputFormat(picFormat)
-						.toFile(path + "/" + prefix + ratio+"." + picFormat);
+					for(int ratio:ratios){
+						if(ratio==1){
+							Thumbnails.of(bfImage).size(imageWidth, imageHeight).outputFormat(picFormat)
+							.toFile(path + "/" + prefix + "." + picFormat);
+						}else{
+							int imageWidth2=imageWidth/ratio;
+							int imageHeight2=imageHeight/ratio;
+							Thumbnails.of(bfImage).sourceRegion(Positions.CENTER, imageWidth, imageHeight)
+							.size(imageWidth2, imageHeight2).outputFormat(picFormat)
+							.toFile(path + "/" + prefix + ratio+"." + picFormat);
+						}
 					}
 					return path + "/" + prefix + "." + picFormat;
 				}
