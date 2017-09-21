@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="com.seed.smc.cmmy" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>社区</name>
+    <description>
+		社区
+	</description>
+	<author email="liyc@jumpow.com" href="http://liyc.cn">
+		厦门电子科技有限公司
+	</author>
+	<content src="index.html" />
+	<access origin="*" />
+	<access origin="tel:*" launch-external="yes" />
+	<access origin="uppay:*" launch-external="yes" />
+	<access origin="http://*" launch-external="yes" />
+	<access origin="https://*" launch-external="yes" />
+	<icon src="res/icon/icon64.png" />
+
+	<platform name="android">
+		<splash src="res/screen/android/splash-port-hdpi.png" density="port-hdpi"/>
+		<splash src="res/screen/android/splash-port-ldpi.png" density="port-ldpi"/>
+		<splash src="res/screen/android/splash-port-mdpi.png" density="port-mdpi"/>
+		<splash src="res/screen/android/splash-port-xhdpi.png" density="port-xhdpi"/>
+	</platform>
+
+	<platform name="ios">
+		<splash src="res/screen/ios/Default@2x~iphone.png" width="640" height="960"/>
+		<splash src="res/screen/ios/Default~iphone.png" width="320" height="480"/>
+		<splash src="res/screen/ios/Default-568h@2x~iphone.png" width="640" height="1136"/>
+		<splash src="res/screen/ios/Default-667h.png" width="750" height="1334"/>
+		<splash src="res/screen/ios/Default-736h.png" width="1242" height="2208"/>
+	</platform>
+
+	<preference name="orientation" value="portrait" />
+	<preference name="fullscreen" value="true" />
+	<preference name="SplashScreen" value="screen" />
+	<preference name="SplashScreenDelay" value="3000" />
+	<preference name="DisallowOverscroll" value="true" />
+</widget>
+
