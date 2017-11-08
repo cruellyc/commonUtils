@@ -1,0 +1,81 @@
+/*时间选择*/
+.pgDate .date_choicetime{
+	width:100%;
+	height: 140px;
+	line-height: 140px;
+	position: fixed;
+	bottom: 0px; 
+	background-color: #fff;
+	border-top:1px solid #D3D3D3;
+	box-shadow:0px 0px 2px #D3D3D3;
+	z-index: 1005;
+}
+.pgDate .date_timeRow{
+	height: 90px;
+	line-height: 90px;
+	background-color: #fff;
+}
+.pgDate .date_row{
+	height: 90px;
+	line-height: 90px;
+	position: relative;
+	top: 0px; 
+	color:#5A5A5A;
+}
+.pgDate .date_titRow{
+	height: 40px;
+	line-height: 40px;
+	color:#007FEC;
+	padding: 0 10px;
+	font-size: 16px;
+}
+.pgDate .date_select{
+	color:#222222;
+	font-weight:bold;
+	font-size: 16px;
+}
+.pgDate .date_noselect{
+	color:#5A5A5A;
+}
+.pgDate .date_hour{
+	width:29%;
+	padding-left:20%;
+}
+.pgDate .date_month{
+	text-align: center;
+	height: 90px;
+	overflow: scroll;
+}
+.pgDate .date_minutes{
+	width:31%;
+	padding-left:18%;
+}
+.pgDate .date_hour,.pgDate .date_minutes{
+	height: 90px;
+	overflow: scroll;
+}
+.pgDate .date_month div,.pgDate .date_hour div,.pgDate .date_minutes div{
+	height: 30px;
+	line-height: 30px;
+}
+.pgDate .date_line1{
+	border-bottom: 1px solid #D3D3D3;
+	position: fixed;
+	bottom: 70px; 
+	z-index: 1006;
+	width: 100%;
+}
+.pgDate .date_line2{
+	border-top: 1px solid #D3D3D3;
+	position: fixed;
+	bottom: 40px;
+	z-index: 1006;
+	width: 100%;
+}
+.pgDate .backBg {  background:rgba(0, 0, 0, 0.5); width:100%; height:100%; position:fixed; left:0; top:0; z-index:1001;}
+.pgDate .float_left{
+	float: left;
+}
+.pgDate .float_right{
+	float: right;
+}
