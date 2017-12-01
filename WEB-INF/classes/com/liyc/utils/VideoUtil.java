@@ -95,7 +95,7 @@ public class VideoUtil {
 						}
 
 					}
-					return pathDir + "/" + request.getLocalName();
+					return pathDir + "/" + myFileName;
 				}
 			}
 		}
